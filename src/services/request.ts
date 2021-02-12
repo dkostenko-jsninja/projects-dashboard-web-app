@@ -1,15 +1,15 @@
-import { RequestMethod, Request } from "../types/common-types";
-import environment from "../environment/environment";
+import { RequestMethod, Request } from '../types/common-types';
+import environment from '../environment/environment';
 
 const sendRequest = async (method: RequestMethod, url: string, body?: { [key: string]: any }) => {
   const options: Request = {
     method,
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
   };
 
-  if (method === "POST" || method === "PUT") {
+  if (method === 'POST' || method === 'PUT') {
     options.body = JSON.stringify(body);
   }
 
