@@ -1,8 +1,10 @@
 import React from 'react';
 import './Home.scss';
 
-import { Link } from 'react-router-dom';
+import { Link, Route, Switch } from 'react-router-dom';
 import { List, ListItem, ListItemText } from '@material-ui/core';
+
+import Developers from '../Developers';
 
 function Home() {
   const menuItems = ['Developers', 'Projects', 'Dashboard'];
@@ -20,7 +22,13 @@ function Home() {
           ))}
         </List>
       </div>
-      <div className="c-home__content"></div>
+      <div className="c-home__content">
+        <Switch>
+          <Route path="/developers">
+            <Developers />
+          </Route>
+        </Switch>
+      </div>
     </div>
   );
 }
