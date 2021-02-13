@@ -5,3 +5,13 @@ export type Request = {
   headers: { [key: string]: string };
   body?: string;
 };
+
+export type FormField = {
+  required: boolean;
+  type: string;
+  inputType: string;
+  name: string;
+  label: string;
+  placeholder: string;
+  selectValues: string[];
+};

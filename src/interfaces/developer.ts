@@ -4,7 +4,7 @@ export interface IDeveloper {
   firstName: string;
   lastName: string;
   level: string;
-  photo: string;
+  photo: string | null;
   employeeStatus: string;
 }
 

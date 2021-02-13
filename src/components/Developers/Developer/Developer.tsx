@@ -57,6 +57,7 @@ function Developer({ developer, buttons }: propTypes) {
           draggable="false"
         />
       </div>
+
       <div className="c-developer__info">
         <p className="c-developer__name">{`${developer.firstName} ${developer.lastName}`}</p>
 
@@ -66,6 +67,7 @@ function Developer({ developer, buttons }: propTypes) {
           ))}
         </div>
       </div>
+
       <div className="c-developer__menu">
         <IconButton
           aria-label="more"

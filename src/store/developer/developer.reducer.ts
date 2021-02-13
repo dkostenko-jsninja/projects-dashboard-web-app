@@ -9,6 +9,12 @@ const defaultState: DeveloperState = {
 };
 
 const developerReducer = (state = defaultState, action) => {
+  let updatedDevelopers;
+  const updatedState = {
+    ...state,
+    isDeveloperRequestInProgress: false,
+  };
+
   switch (action.type) {
     case ActionTypes.REQUEST:
       return {
@@ -17,24 +23,34 @@ const developerReducer = (state = defaultState, action) => {
       };
     case ActionTypes.REQUEST_ERROR:
       return {
-        ...state,
-        isDeveloperRequestInProgress: false,
+        ...updatedState,
         developerRequestError: action.payload.developerRequestError,
       };
     case ActionTypes.RECEIVE_DEVELOPERS:
       return {
-        ...state,
+        ...updatedState,
         developers: action.payload.developers,
-        isDeveloperRequestInProgress: false,
       };
     case ActionTypes.DEVELOPER_DELETED:
-      const updatedDevelopers = state.developers.filter(
+      updatedDevelopers = updatedState.developers.filter(
         (developer) => developer.uuid !== action.payload.developerUuid
       );
       return {
-        ...state,
+        ...updatedState,
         developers: updatedDevelopers,
-        isDeveloperRequestInProgress: false,
+      };
+    case ActionTypes.DEVELOPER_CREATED:
+      return {
+        ...updatedState,
+        developers: updatedState.developers.concat(action.payload.developer),
+      };
+    case ActionTypes.DEVELOPER_UPDATED:
+      updatedDevelopers = updatedState.developers.map((currentDev) =>
+        currentDev.uuid === action.payload.developer.uuid ? action.payload.developer : currentDev
+      );
+      return {
+        ...updatedState,
+        developers: updatedDevelopers,
       };
     default:
       return state;
