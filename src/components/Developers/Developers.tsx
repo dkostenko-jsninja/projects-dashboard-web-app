@@ -20,9 +20,8 @@ const initialDialogData = {
 function Developers() {
   const dispatch = useDispatch();
 
-  const { developers, isDeveloperRequestInProgress } = useSelector(
-    (state: RootSate) => state.developerReducer
-  );
+  const { developers } = useSelector((state: RootSate) => state.developerReducer);
+  const { isRequestInProgress } = useSelector((state: RootSate) => state.requestStatusReducer);
 
   const [dialogData, setDialogData] = useState(initialDialogData);
   const [selectedDeveloper, setSelectedDeveloper] = useState(initialDeveloper);
@@ -62,9 +61,7 @@ function Developers() {
         Add new developer
       </Button>
 
-      {!isDeveloperRequestInProgress && !developers.length && (
-        <p>There are no added developers yet.</p>
-      )}
+      {!isRequestInProgress && !developers.length && <p>There are no added developers yet.</p>}
 
       <div className="c-developers__list">
         {developers.map((developer) => (
