@@ -1,3 +1,4 @@
 /.env.dist
 /.gitignore
 /.prettierignore
+/src/assets
