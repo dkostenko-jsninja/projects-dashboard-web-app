@@ -1,6 +1,9 @@
 import React from 'react';
 
+import { useDispatch } from 'react-redux';
+
 import { IFeature } from '../../../../interfaces/feature';
+import { deleteFeature } from '../../../../store/project/project.action';
 
 import Feature from './Feature';
 
@@ -10,13 +13,15 @@ type propTypes = {
 };
 
 function Features({ features, projectUuid }: propTypes) {
+  const dispatch = useDispatch();
+
   const editFeature = (feature: IFeature) => {
     console.log(projectUuid);
     console.log('edit', feature);
   };
 
-  const deleteFeature = (feature: IFeature) => {
-    console.log('delete', feature);
+  const removeFeature = (feature: IFeature) => {
+    dispatch(deleteFeature(projectUuid, feature.uuid));
   };
 
   return (
@@ -27,7 +32,7 @@ function Features({ features, projectUuid }: propTypes) {
           feature={feature}
           buttons={[
             { name: 'Edit feature', handler: editFeature },
-            { name: 'Delete feature', handler: deleteFeature },
+            { name: 'Delete feature', handler: removeFeature },
           ]}
         />
       ))}

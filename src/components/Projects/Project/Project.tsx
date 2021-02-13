@@ -41,7 +41,7 @@ function Project({ project, buttons }: propTypes) {
         <div className="c-project__team__members">
           {project.team.length ? (
             project.team.map((developer) => (
-              <TeamMember developer={developer} handler={unassignDeveloper} />
+              <TeamMember key={developer.uuid} developer={developer} handler={unassignDeveloper} />
             ))
           ) : (
             <p>This project doesn&lsquo;t have a team yet.</p>

@@ -21,6 +21,18 @@ const projectReducer = (state = defaultState, action) => {
         ...state,
         projects: updatedProjects,
       };
+    case ActionTypes.FEATURE_DELETED:
+      updatedProjects = state.projects.map((project) => {
+        const newProject = { ...project };
+        newProject.features = newProject.features.filter(
+          (feature) => feature.uuid !== action.payload.featureUuid
+        );
+        return newProject;
+      });
+      return {
+        ...state,
+        projects: updatedProjects,
+      };
     default:
       return state;
   }
