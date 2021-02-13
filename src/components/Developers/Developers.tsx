@@ -4,7 +4,7 @@ import './Developers.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Typography } from '@material-ui/core';
 
-import { getDevelopers } from '../../store/developer/developer.action';
+import { deleteDeveloper, getDevelopers } from '../../store/developer/developer.action';
 import { RootSate } from '../../types/store-types';
 import { IDeveloper } from '../../interfaces/developer';
 
@@ -25,8 +25,8 @@ function Developers() {
     console.log('edit', developer);
   };
 
-  const deleteDeveloper = (developer: IDeveloper) => {
-    console.log('delete', developer);
+  const removeDeveloper = (developer: IDeveloper) => {
+    dispatch(deleteDeveloper(developer.uuid));
   };
 
   return (
@@ -47,7 +47,7 @@ function Developers() {
             developer={developer}
             buttons={[
               { name: 'Edit', handler: editDeveloper },
-              { name: 'Delete', handler: deleteDeveloper },
+              { name: 'Delete', handler: removeDeveloper },
             ]}
           />
         ))}

@@ -27,6 +27,15 @@ const developerReducer = (state = defaultState, action) => {
         developers: action.payload.developers,
         isDeveloperRequestInProgress: false,
       };
+    case ActionTypes.DEVELOPER_DELETED:
+      const updatedDevelopers = state.developers.filter(
+        (developer) => developer.uuid !== action.payload.developerUuid
+      );
+      return {
+        ...state,
+        developers: updatedDevelopers,
+        isDeveloperRequestInProgress: false,
+      };
     default:
       return state;
   }
