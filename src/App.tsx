@@ -1,11 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.scss';
 
-import { AppBar, Toolbar, Typography } from '@material-ui/core';
+import { AppBar, Snackbar, Toolbar, Typography } from '@material-ui/core';
+import MuiAlert from '@material-ui/lab/Alert';
+import { useSelector } from 'react-redux';
+
+import { RootSate } from './types/store-types';
 
 import Home from './components/Home';
 
 function App() {
+  const { developerRequestError } = useSelector((state: RootSate) => state.developerReducer);
+
+  const [error, setError] = useState<string | null>('');
+
+  useEffect(() => {
+    setError(developerRequestError);
+  }, [developerRequestError]);
+
   return (
     <div className="c-app">
       <AppBar position="static">
@@ -14,6 +26,17 @@ function App() {
         </Toolbar>
       </AppBar>
       <Home />
+
+      <Snackbar
+        open={!!error}
+        onClick={() => setError(null)}
+        autoHideDuration={6000}
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+      >
+        <MuiAlert elevation={6} variant="filled" severity="error">
+          {error}
+        </MuiAlert>
+      </Snackbar>
     </div>
   );
 }
