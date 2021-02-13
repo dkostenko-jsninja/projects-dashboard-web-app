@@ -1,0 +1,17 @@
+.c-developers {
+  position: relative;
+  padding: 24px;
+  height: 100%;
+  background-color: #fafafa;
+  &__list {
+    margin-top: 24px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+.c-add-btn {
+  position: absolute !important;
+  right: 24px;
+  top: 24px;
+}
