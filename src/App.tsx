@@ -18,6 +18,10 @@ function App() {
     setError(developerRequestError);
   }, [developerRequestError]);
 
+  const handleSnackbarClose = () => {
+    setError(null);
+  };
+
   return (
     <div className="c-app">
       <AppBar position="static">
@@ -29,7 +33,8 @@ function App() {
 
       <Snackbar
         open={!!error}
-        onClick={() => setError(null)}
+        onClick={handleSnackbarClose}
+        onClose={handleSnackbarClose}
         autoHideDuration={6000}
         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
       >
