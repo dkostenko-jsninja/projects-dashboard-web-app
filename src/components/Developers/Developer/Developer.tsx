@@ -39,7 +39,7 @@ function Developer({ developer, buttons }: propTypes) {
         <img
           className="c-developer__image"
           src={developer.photo ? developer.photo : noPhoto}
-          alt={`${developer.firstName} ${developer.lastName}`}
+          alt=""
           draggable="false"
         />
       </div>
