@@ -4,7 +4,7 @@ import './Projects.scss';
 import { Button, Typography } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { getProjects } from '../../store/project/project.action';
+import { deleteProject, getProjects } from '../../store/project/project.action';
 import { RootSate } from '../../types/store-types';
 import { IProjectDetails } from '../../interfaces/project';
 
@@ -24,8 +24,8 @@ function Projects() {
     console.log('edit', project);
   };
 
-  const deleteProject = (project: IProjectDetails) => {
-    console.log('delete', project);
+  const removeProject = (project: IProjectDetails) => {
+    dispatch(deleteProject(project.uuid));
   };
 
   return (
@@ -44,7 +44,7 @@ function Projects() {
             project={project}
             buttons={[
               { name: 'Edit project', handler: editProject },
-              { name: 'Delete project', handler: deleteProject },
+              { name: 'Delete project', handler: removeProject },
             ]}
           />
         ))}

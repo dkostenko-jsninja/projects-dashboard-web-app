@@ -6,11 +6,20 @@ const defaultState: ProjectState = {
 };
 
 const projectReducer = (state = defaultState, action) => {
+  let updatedProjects;
   switch (action.type) {
     case ActionTypes.RECEIVE_PROJECTS:
       return {
         ...state,
         projects: action.payload.projects,
+      };
+    case ActionTypes.PROJECT_DELETED:
+      updatedProjects = state.projects.filter(
+        (project) => project.uuid !== action.payload.projectUuid
+      );
+      return {
+        ...state,
+        projects: updatedProjects,
       };
     default:
       return state;
