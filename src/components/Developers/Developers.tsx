@@ -50,13 +50,13 @@ function Developers() {
   };
 
   return (
-    <div className="c-developers">
+    <div className="c-developers c-screen">
       <Typography variant="h4">Developers</Typography>
       <Button
         variant="contained"
         color="primary"
         size="large"
-        className="c-add-btn"
+        className="c-add-button"
         onClick={addDeveloper}
       >
         Add new developer
