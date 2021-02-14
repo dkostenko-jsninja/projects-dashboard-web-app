@@ -15,7 +15,8 @@
         "tsx": "never"
       }
     ],
-    "no-use-before-define": "off"
+    "no-use-before-define": "off",
+    "no-param-reassign": "off"
   },
   "settings": {
     "import/resolver": {

@@ -38,11 +38,10 @@ const projectReducer = (state = defaultState, action) => {
       };
     case ActionTypes.FEATURE_CREATED:
       updatedProjects = state.projects.map((project) => {
-        const newProject = { ...project };
-        if (newProject.uuid === action.payload.projectUuid) {
-          newProject.features = newProject.features.concat(action.payload.feature);
+        if (project.uuid === action.payload.projectUuid) {
+          project.features = project.features.concat(action.payload.feature);
         }
-        return newProject;
+        return project;
       });
       return {
         ...state,
@@ -50,17 +49,16 @@ const projectReducer = (state = defaultState, action) => {
       };
     case ActionTypes.FEATURE_UPDATED:
       updatedProjects = state.projects.map((project) => {
-        const newProject = { ...project };
-        if (newProject.uuid === action.payload.projectUuid) {
+        if (project.uuid === action.payload.projectUuid) {
           const updatedFeature = action.payload.feature;
           if (!updatedFeature.developerUuid) {
             updatedFeature.expirationDate = null;
           }
-          newProject.features = newProject.features.map((feat) =>
+          project.features = project.features.map((feat) =>
             feat.uuid === updatedFeature.uuid ? updatedFeature : feat
           );
         }
-        return newProject;
+        return project;
       });
       return {
         ...state,
@@ -68,11 +66,10 @@ const projectReducer = (state = defaultState, action) => {
       };
     case ActionTypes.FEATURE_DELETED:
       updatedProjects = state.projects.map((project) => {
-        const newProject = { ...project };
-        newProject.features = newProject.features.filter(
+        project.features = project.features.filter(
           (feature) => feature.uuid !== action.payload.featureUuid
         );
-        return newProject;
+        return project;
       });
       return {
         ...state,
