@@ -3,5 +3,5 @@ export interface IFeature {
   name: string;
   description: string;
   expirationDate: string;
-  developerUuid: string;
+  developerUuid: string | null;
 }

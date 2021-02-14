@@ -36,6 +36,36 @@ const projectReducer = (state = defaultState, action) => {
         ...state,
         projects: updatedProjects,
       };
+    case ActionTypes.FEATURE_CREATED:
+      updatedProjects = state.projects.map((project) => {
+        const newProject = { ...project };
+        if (newProject.uuid === action.payload.projectUuid) {
+          newProject.features = newProject.features.concat(action.payload.feature);
+        }
+        return newProject;
+      });
+      return {
+        ...state,
+        projects: updatedProjects,
+      };
+    case ActionTypes.FEATURE_UPDATED:
+      updatedProjects = state.projects.map((project) => {
+        const newProject = { ...project };
+        if (newProject.uuid === action.payload.projectUuid) {
+          const updatedFeature = action.payload.feature;
+          if (!updatedFeature.developerUuid) {
+            updatedFeature.expirationDate = null;
+          }
+          newProject.features = newProject.features.map((feat) =>
+            feat.uuid === updatedFeature.uuid ? updatedFeature : feat
+          );
+        }
+        return newProject;
+      });
+      return {
+        ...state,
+        projects: updatedProjects,
+      };
     case ActionTypes.FEATURE_DELETED:
       updatedProjects = state.projects.map((project) => {
         const newProject = { ...project };

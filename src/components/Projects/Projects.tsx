@@ -45,7 +45,7 @@ function Projects() {
       type: 'input',
       inputType: 'text',
       name: 'description',
-      label: "Project's name",
+      label: "Project's description",
       placeholder: "Enter project's description",
       selectValues: [],
     },

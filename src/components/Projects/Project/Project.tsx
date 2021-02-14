@@ -52,13 +52,7 @@ function Project({ project, buttons }: propTypes) {
       </div>
 
       <div className="c-project__features">
-        <Typography variant="h6">Features</Typography>
-
-        {project.features.length ? (
-          <Features features={project.features} projectUuid={project.uuid} />
-        ) : (
-          <p>This project doesn&lsquo;t have features yet.</p>
-        )}
+        <Features features={project.features} projectUuid={project.uuid} />
       </div>
 
       <div className="c-project__menu">
