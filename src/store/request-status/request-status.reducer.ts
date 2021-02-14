@@ -12,6 +12,7 @@ const requestStatusReducer = (state = defaultState, action) => {
       return {
         ...state,
         isRequestInProgress: true,
+        requestError: null,
       };
     case ActionTypes.REQUEST_ERROR:
       return {

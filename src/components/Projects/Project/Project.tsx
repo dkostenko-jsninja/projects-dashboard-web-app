@@ -7,7 +7,7 @@ import { IProjectDetails } from '../../../interfaces/project';
 
 import ItemMenu from '../../ItemMenu';
 import Features from './Features';
-import TeamMember from './TeamMember';
+import Team from './Team';
 
 type propTypes = {
   project: IProjectDetails;
@@ -17,10 +17,6 @@ type propTypes = {
 function Project({ project, buttons }: propTypes) {
   const handleMenuClick = (handler) => {
     handler(project);
-  };
-
-  const unassignDeveloper = (developerUuid: string) => {
-    console.log(developerUuid);
   };
 
   return (
@@ -38,17 +34,7 @@ function Project({ project, buttons }: propTypes) {
       )}
 
       <div className="c-project__team">
-        <Typography variant="h6">Team</Typography>
-
-        <div className="c-project__team__members">
-          {project.team.length ? (
-            project.team.map((developer) => (
-              <TeamMember key={developer.uuid} developer={developer} handler={unassignDeveloper} />
-            ))
-          ) : (
-            <p>This project doesn&lsquo;t have a team yet.</p>
-          )}
-        </div>
+        <Team team={project.team} projectUuid={project.uuid} />
       </div>
 
       <div className="c-project__features">

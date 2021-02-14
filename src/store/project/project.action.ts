@@ -1,8 +1,10 @@
 import sendRequest from '../../services/request';
 
-import { request, requestError } from '../request-status/request-status.action';
 import { IProject } from '../../interfaces/project';
 import { IFeature } from '../../interfaces/feature';
+import { IDeveloper } from '../../interfaces/developer';
+
+import { request, requestError } from '../request-status/request-status.action';
 
 export enum ActionTypes {
   RECEIVE_PROJECTS = 'RECEIVE_PROJECTS',
@@ -12,6 +14,8 @@ export enum ActionTypes {
   FEATURE_CREATED = 'FEATURE_CREATED',
   FEATURE_UPDATED = 'FEATURE_UPDATED',
   FEATURE_DELETED = 'FEATURE_DELETED',
+  DEVELOPER_ASSIGNED_TO_PROJECT = 'DEVELOPER_ASSIGNED_TO_PROJECT',
+  DEVELOPER_UNASSINGED_FROM_PROJECT = 'DEVELOPER_UNASSINGED_FROM_PROJECT',
 }
 
 const receiveProjects = (projects) => ({
@@ -47,6 +51,16 @@ const featureUpdated = (projectUuid, feature) => ({
 const featureDeleted = (featureUuid) => ({
   type: ActionTypes.FEATURE_DELETED,
   payload: { featureUuid },
+});
+
+const developerAssignedToProject = (projectUuid, developer) => ({
+  type: ActionTypes.DEVELOPER_ASSIGNED_TO_PROJECT,
+  payload: { projectUuid, developer },
+});
+
+const developerUnassignedFromProject = (projectUuid, developerUuid) => ({
+  type: ActionTypes.DEVELOPER_UNASSINGED_FROM_PROJECT,
+  payload: { projectUuid, developerUuid },
 });
 
 export const getProjects = () => (dispatch) => {
@@ -145,6 +159,34 @@ export const deleteFeature = (projectUuid: string, featureUuid: string) => (disp
   sendRequest('DELETE', `/api/project/${projectUuid}/feature/${featureUuid}`)
     .then(() => {
       dispatch(featureDeleted(featureUuid));
+    })
+    .catch((err) => {
+      dispatch(requestError(err));
+    });
+};
+
+export const assignDeveloperToProject = (projectUuid: string, developer: IDeveloper) => (
+  dispatch
+) => {
+  dispatch(request());
+
+  sendRequest('POST', `/api/project/${projectUuid}/developers`, { developerUuid: developer.uuid })
+    .then(() => {
+      dispatch(developerAssignedToProject(projectUuid, developer));
+    })
+    .catch((err) => {
+      dispatch(requestError(err));
+    });
+};
+
+export const unassignDeveloperFromProject = (projectUuid: string, developerUuid: string) => (
+  dispatch
+) => {
+  dispatch(request());
+
+  sendRequest('DELETE', `/api/project/${projectUuid}/developers/${developerUuid}`)
+    .then(() => {
+      dispatch(developerUnassignedFromProject(projectUuid, developerUuid));
     })
     .catch((err) => {
       dispatch(requestError(err));

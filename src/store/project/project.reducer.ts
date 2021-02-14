@@ -80,6 +80,30 @@ const projectReducer = (state = defaultState, action) => {
         ...state,
         projects: updatedProjects,
       };
+    case ActionTypes.DEVELOPER_ASSIGNED_TO_PROJECT:
+      updatedProjects = state.projects.map((project) => {
+        if (project.uuid === action.payload.projectUuid) {
+          project.team.push(action.payload.developer);
+        }
+        return project;
+      });
+
+      return {
+        ...state,
+        projects: updatedProjects,
+      };
+    case ActionTypes.DEVELOPER_UNASSINGED_FROM_PROJECT:
+      updatedProjects = state.projects.map((project) => {
+        if (project.uuid === action.payload.projectUuid) {
+          project.team = project.team.filter((dev) => dev.uuid !== action.payload.developerUuid);
+        }
+        return project;
+      });
+
+      return {
+        ...state,
+        projects: updatedProjects,
+      };
     default:
       return state;
   }

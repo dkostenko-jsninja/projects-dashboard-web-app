@@ -10,6 +10,7 @@ import {
   editProject,
   getProjects,
 } from '../../store/project/project.action';
+import { getDevelopers } from '../../store/developer/developer.action';
 
 import { IProject, IProjectDetails } from '../../interfaces/project';
 
@@ -62,6 +63,7 @@ function Projects() {
 
   useEffect(() => {
     dispatch(getProjects());
+    dispatch(getDevelopers());
   }, []);
 
   const addProject = () => {
