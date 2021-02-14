@@ -16,9 +16,10 @@ const developerReducer = (state = defaultState, action) => {
         developers: action.payload.developers,
       };
     case ActionTypes.DEVELOPER_DELETED:
-      updatedDevelopers = state.developers.filter(
-        (developer) => developer.uuid !== action.payload.developerUuid
-      );
+      updatedDevelopers = state.developers.filter((developer) => {
+        return developer.uuid !== action.payload.developerUuid;
+      });
+
       return {
         ...state,
         developers: updatedDevelopers,
@@ -29,9 +30,12 @@ const developerReducer = (state = defaultState, action) => {
         developers: state.developers.concat(action.payload.developer),
       };
     case ActionTypes.DEVELOPER_UPDATED:
-      updatedDevelopers = state.developers.map((currentDev) =>
-        currentDev.uuid === action.payload.developer.uuid ? action.payload.developer : currentDev
-      );
+      updatedDevelopers = state.developers.map((currentDev) => {
+        return currentDev.uuid === action.payload.developer.uuid
+          ? action.payload.developer
+          : currentDev;
+      });
+
       return {
         ...state,
         developers: updatedDevelopers,

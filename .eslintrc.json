@@ -16,7 +16,8 @@
       }
     ],
     "no-use-before-define": "off",
-    "no-param-reassign": "off"
+    "no-param-reassign": "off",
+    "arrow-body-style": ["off"]
   },
   "settings": {
     "import/resolver": {
