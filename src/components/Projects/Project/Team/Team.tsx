@@ -13,7 +13,7 @@ import { IDeveloper } from '../../../../interfaces/developer';
 
 import { RootSate } from '../../../../types/store-types';
 
-import SelectDevelopers from '../../../SelectDevelopers';
+import SelectDevelopers from '../SelectDevelopers';
 import TeamMember from '../TeamMember';
 
 type propTypes = {

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
 
-import { IDeveloper } from '../../interfaces/developer';
+import { IDeveloper } from '../../../../interfaces/developer';
 
 type propTypes = {
   label: string;
