@@ -28,12 +28,14 @@ function Project({ project, buttons }: propTypes) {
       <Typography variant="h6">{project.name}</Typography>
 
       <p className="c-project__description">{project.description}</p>
-      <p className="c-project__deadline">
-        Dead line date:
-        <span className="c-project__deadline__date">
-          {new Date(project.expirationDate).toDateString()}
-        </span>
-      </p>
+      {project.expirationDate && (
+        <p className="c-project__deadline">
+          Dead line date:
+          <span className="c-project__deadline__date">
+            {new Date(project.expirationDate).toDateString()}
+          </span>
+        </p>
+      )}
 
       <div className="c-project__team">
         <Typography variant="h6">Team</Typography>

@@ -5,7 +5,7 @@ export interface IProject {
   uuid: string;
   name: string;
   description: string;
-  expirationDate: string;
+  expirationDate: string | null;
 }
 
 export interface IProjectDetails extends IProject {

@@ -7,7 +7,7 @@ export const request = () => ({
   type: ActionTypes.REQUEST,
 });
 
-export const requestError = (errorMessage: string) => ({
+export const requestError = (error) => ({
   type: ActionTypes.REQUEST_ERROR,
-  payload: { errorMessage },
+  payload: { errorMessage: error.message },
 });

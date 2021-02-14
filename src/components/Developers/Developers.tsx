@@ -10,20 +10,17 @@ import {
   editDeveloper,
   getDevelopers,
 } from '../../store/developer/developer.action';
+
 import { DeveloperLevels, EmployeeStatus, IDeveloper } from '../../interfaces/developer';
+
 import { RootSate } from '../../types/store-types';
 import { FormField } from '../../types/common-types';
+
 import initialDeveloper from '../../constants/initial-developer';
+import initialDialogData from '../../constants/initial-dialog-data';
 
 import Developer from './Developer';
 import ManageEntityInfo from '../ManageEntityInfo';
-
-const initialDialogData = {
-  type: '',
-  opened: false,
-  entity: initialDeveloper,
-  title: '',
-};
 
 function Developers() {
   const dispatch = useDispatch();
@@ -31,7 +28,7 @@ function Developers() {
   const { developers } = useSelector((state: RootSate) => state.developerReducer);
   const { isRequestInProgress } = useSelector((state: RootSate) => state.requestStatusReducer);
 
-  const [dialogData, setDialogData] = useState(initialDialogData);
+  const [dialogData, setDialogData] = useState({ ...initialDialogData, entity: initialDeveloper });
 
   const formFields: FormField[] = [
     {
@@ -120,7 +117,7 @@ function Developers() {
   };
 
   const handleDialogClose = () => {
-    setDialogData(initialDialogData);
+    setDialogData({ ...initialDialogData, entity: initialDeveloper });
   };
 
   return (

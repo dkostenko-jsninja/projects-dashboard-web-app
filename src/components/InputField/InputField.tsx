@@ -4,6 +4,7 @@ import { TextField, Select, MenuItem, InputLabel, FormHelperText } from '@materi
 
 import emailRegExp from '../../constants/email-regexp';
 import urlRegexp from '../../constants/url-regexp';
+import isoDateRegexp from '../../constants/iso-date-regexp';
 
 type propTypes = {
   className: string;
@@ -52,6 +53,11 @@ function InputField({
 
     if (inputType === 'url' && value && !urlRegexp.test(value)) {
       setErrorText('Please enter a valid url.');
+      return false;
+    }
+
+    if (inputType === 'date' && value && !isoDateRegexp.test(value)) {
+      setErrorText('Please enter a valid date in ISO8601 format.');
       return false;
     }
 

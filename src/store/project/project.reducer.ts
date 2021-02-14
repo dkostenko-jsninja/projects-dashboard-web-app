@@ -13,6 +13,21 @@ const projectReducer = (state = defaultState, action) => {
         ...state,
         projects: action.payload.projects,
       };
+    case ActionTypes.PROJECT_CREATED:
+      return {
+        ...state,
+        projects: state.projects.concat(action.payload.project),
+      };
+    case ActionTypes.PROJECT_UPDATED:
+      updatedProjects = state.projects.map((project) =>
+        project.uuid === action.payload.project.uuid
+          ? { ...action.payload.project, team: project.team, features: project.features }
+          : project
+      );
+      return {
+        ...state,
+        projects: updatedProjects,
+      };
     case ActionTypes.PROJECT_DELETED:
       updatedProjects = state.projects.filter(
         (project) => project.uuid !== action.payload.projectUuid

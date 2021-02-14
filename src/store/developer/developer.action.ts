@@ -38,7 +38,7 @@ export const getDevelopers = () => (dispatch) => {
       dispatch(receiveDevelopers(data.developers));
     })
     .catch((err) => {
-      dispatch(requestError(err.message));
+      dispatch(requestError(err));
     });
 };
 
@@ -50,7 +50,7 @@ export const deleteDeveloper = (developerUuid: string) => (dispatch) => {
       dispatch(developerDeleted(developerUuid));
     })
     .catch((err) => {
-      dispatch(requestError(err.message));
+      dispatch(requestError(err));
     });
 };
 
@@ -67,7 +67,7 @@ export const createDeveloper = (developer: IDeveloper) => (dispatch) => {
       dispatch(developerCreated(data.developer));
     })
     .catch((err) => {
-      dispatch(requestError(err.message));
+      dispatch(requestError(err));
     });
 };
 
@@ -84,6 +84,6 @@ export const editDeveloper = (developer: IDeveloper) => (dispatch) => {
       dispatch(developerUpdated(developer));
     })
     .catch((err) => {
-      dispatch(requestError(err.message));
+      dispatch(requestError(err));
     });
 };
