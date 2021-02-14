@@ -5,6 +5,7 @@ import { Link, Route, Switch } from 'react-router-dom';
 import { List, ListItem, ListItemText } from '@material-ui/core';
 
 import Developers from '../Developers';
+import Projects from '../Projects';
 
 function Home() {
   const menuItems = ['Developers', 'Projects', 'Dashboard'];
@@ -22,10 +23,14 @@ function Home() {
           ))}
         </List>
       </div>
+
       <div className="c-home__content">
         <Switch>
           <Route path="/developers">
             <Developers />
+          </Route>
+          <Route path="/projects">
+            <Projects />
           </Route>
         </Switch>
       </div>

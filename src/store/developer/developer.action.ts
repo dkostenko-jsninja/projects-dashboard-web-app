@@ -1,25 +1,15 @@
 import sendRequest from '../../services/request';
+
 import { IDeveloper } from '../../interfaces/developer';
 
+import { request, requestError } from '../request-status/request-status.action';
+
 export enum ActionTypes {
-  REQUEST = 'REQUEST',
-  REQUEST_ERROR = 'REQUEST_ERROR',
   RECEIVE_DEVELOPERS = 'RECEIVE_DEVELOPERS',
   DEVELOPER_DELETED = 'DEVELOPER_DELETED',
   DEVELOPER_CREATED = 'DEVELOPER_CREATED',
   DEVELOPER_UPDATED = 'DEVELOPER_UPDATED',
 }
-
-const request = () => ({
-  type: ActionTypes.REQUEST,
-});
-
-const requestError = (err) => ({
-  type: ActionTypes.REQUEST_ERROR,
-  payload: {
-    developerRequestError: err.message,
-  },
-});
 
 const receiveDevelopers = (developers) => ({
   type: ActionTypes.RECEIVE_DEVELOPERS,
@@ -46,7 +36,6 @@ export const getDevelopers = () => (dispatch) => {
 
   sendRequest('GET', '/api/developers')
     .then((data) => {
-      console.log(data.developers);
       dispatch(receiveDevelopers(data.developers));
     })
     .catch((err) => {

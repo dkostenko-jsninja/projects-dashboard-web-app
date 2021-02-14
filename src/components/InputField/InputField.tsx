@@ -4,6 +4,7 @@ import { TextField, Select, MenuItem, InputLabel, FormHelperText } from '@materi
 
 import emailRegExp from '../../constants/email-regexp';
 import urlRegexp from '../../constants/url-regexp';
+import isoDateRegexp from '../../constants/iso-date-regexp';
 
 type propTypes = {
   className: string;
@@ -55,6 +56,11 @@ function InputField({
       return false;
     }
 
+    if (inputType === 'date' && value && !isoDateRegexp.test(value)) {
+      setErrorText('Please enter a valid date in ISO8601 format.');
+      return false;
+    }
+
     if (type === 'input' && (!value || value.length < 2) && required) {
       setErrorText('This field should contain at least 2 symbols.');
       return false;
@@ -79,7 +85,7 @@ function InputField({
       value={value}
       onChange={(e) => handleChange(name, e.target.value)}
       error={!!errorText && showErrors}
-      helperText={errorText}
+      helperText={showErrors && errorText}
       fullWidth
     />
   ) : (

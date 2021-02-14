@@ -1,13 +1,11 @@
-import React, { useState, MouseEvent } from 'react';
+import React from 'react';
 import './Developer.scss';
-
-import { IconButton, Menu, MenuItem } from '@material-ui/core';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 import { IDeveloper } from '../../../interfaces/developer';
 
 import noPhoto from '../../../assets/images/no_photo.png';
 
+import ItemMenu from '../../ItemMenu';
 import DetailItem from './DetailItem';
 
 type propTypes = {
@@ -16,9 +14,6 @@ type propTypes = {
 };
 
 function Developer({ developer, buttons }: propTypes) {
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const isMenuOpened = Boolean(anchorEl);
-
   const developerDetails = [
     {
       name: 'email',
@@ -34,17 +29,8 @@ function Developer({ developer, buttons }: propTypes) {
     },
   ];
 
-  const handleOpenMenu = (event: MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleCloseMenu = () => {
-    setAnchorEl(null);
-  };
-
   const handleMenuClick = (handler) => {
     handler(developer);
-    handleCloseMenu();
   };
 
   return (
@@ -53,7 +39,7 @@ function Developer({ developer, buttons }: propTypes) {
         <img
           className="c-developer__image"
           src={developer.photo ? developer.photo : noPhoto}
-          alt={`${developer.firstName} ${developer.lastName}`}
+          alt=""
           draggable="false"
         />
       </div>
@@ -69,21 +55,7 @@ function Developer({ developer, buttons }: propTypes) {
       </div>
 
       <div className="c-developer__menu">
-        <IconButton
-          aria-label="more"
-          aria-controls="long-menu"
-          aria-haspopup="true"
-          onClick={handleOpenMenu}
-        >
-          <MoreVertIcon />
-        </IconButton>
-        <Menu open={isMenuOpened} anchorEl={anchorEl} keepMounted onClose={handleCloseMenu}>
-          {buttons.map((button) => (
-            <MenuItem key={button.name} onClick={() => handleMenuClick(button.handler)}>
-              {button.name}
-            </MenuItem>
-          ))}
-        </Menu>
+        <ItemMenu buttons={buttons} handleMenuClick={handleMenuClick} />
       </div>
     </div>
   );

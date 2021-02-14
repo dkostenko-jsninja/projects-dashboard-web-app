@@ -1,0 +1,21 @@
+.c-feature {
+  margin: 24px 24px 0 24px;
+  border-top: #01579b solid 1px;
+  position: relative;
+  &__menu {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  &__name {
+    font-weight: 600;
+  }
+  &__date {
+    margin-left: 24px;
+    color: #388e3c;
+    font-weight: 600;
+    &--warn {
+      color: #dd2c00;
+    }
+  }
+}

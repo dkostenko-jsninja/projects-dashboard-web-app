@@ -10,13 +10,13 @@ import { RootSate } from './types/store-types';
 import Home from './components/Home';
 
 function App() {
-  const { developerRequestError } = useSelector((state: RootSate) => state.developerReducer);
+  const { requestError } = useSelector((state: RootSate) => state.requestStatusReducer);
 
   const [error, setError] = useState<string | null>('');
 
   useEffect(() => {
-    setError(developerRequestError);
-  }, [developerRequestError]);
+    setError(requestError);
+  }, [requestError]);
 
   const handleSnackbarClose = () => {
     setError(null);
