@@ -9,8 +9,9 @@ import {
   unassignDeveloperFromProject,
 } from '../../../../store/project/project.action';
 
-import { RootSate } from '../../../../types/store-types';
 import { IDeveloper } from '../../../../interfaces/developer';
+
+import { RootSate } from '../../../../types/store-types';
 
 import SelectDevelopers from '../../../SelectDevelopers';
 import TeamMember from '../TeamMember';

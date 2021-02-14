@@ -24,6 +24,7 @@ function Project({ project, buttons }: propTypes) {
       <Typography variant="h6">{project.name}</Typography>
 
       <p className="c-project__description">{project.description}</p>
+
       {project.expirationDate && (
         <p className="c-project__deadline">
           Dead line date:

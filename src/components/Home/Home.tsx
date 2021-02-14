@@ -23,6 +23,7 @@ function Home() {
           ))}
         </List>
       </div>
+
       <div className="c-home__content">
         <Switch>
           <Route path="/developers">

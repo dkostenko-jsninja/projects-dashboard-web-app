@@ -5,20 +5,22 @@ import { useDispatch } from 'react-redux';
 import { Dialog, IconButton, Typography } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 
-import { FormField } from '../../../../types/common-types';
-import { IFeature } from '../../../../interfaces/feature';
 import {
   createFeature,
   deleteFeature,
   editFeature,
 } from '../../../../store/project/project.action';
 
+import { IFeature } from '../../../../interfaces/feature';
+import { IDeveloper } from '../../../../interfaces/developer';
+
+import { FormField } from '../../../../types/common-types';
+
 import initialDialogData from '../../../../constants/initial-dialog-data';
 import initialFeature from '../../../../constants/initial-feature';
 
 import ManageEntityInfo from '../../../ManageEntityInfo';
 import Feature from './Feature';
-import { IDeveloper } from '../../../../interfaces/developer';
 
 type propTypes = {
   features: IFeature[];

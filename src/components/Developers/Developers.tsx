@@ -19,8 +19,8 @@ import { FormField } from '../../types/common-types';
 import initialDeveloper from '../../constants/initial-developer';
 import initialDialogData from '../../constants/initial-dialog-data';
 
-import Developer from './Developer';
 import ManageEntityInfo from '../ManageEntityInfo';
+import Developer from './Developer';
 
 function Developers() {
   const dispatch = useDispatch();

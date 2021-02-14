@@ -1,5 +1,6 @@
-import { RequestMethod, Request } from '../types/common-types';
 import environment from '../environment/environment';
+
+import { RequestMethod, Request } from '../types/common-types';
 
 const sendRequest = async (method: RequestMethod, url: string, body?: { [key: string]: any }) => {
   const options: Request = {
