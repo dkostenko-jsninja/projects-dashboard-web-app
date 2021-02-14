@@ -117,18 +117,20 @@ function Projects() {
 
       {!isRequestInProgress && !projects.length && <p>There are no created projects yet.</p>}
 
-      <div className="c-projects__list">
-        {projects.map((project) => (
-          <Project
-            key={project.uuid}
-            project={project}
-            buttons={[
-              { name: 'Edit project', handler: editProjectDetails },
-              { name: 'Delete project', handler: removeProject },
-            ]}
-          />
-        ))}
-      </div>
+      {projects.length ? (
+        <div className="c-projects__list">
+          {projects.map((project) => (
+            <Project
+              key={project.uuid}
+              project={project}
+              buttons={[
+                { name: 'Edit project', handler: editProjectDetails },
+                { name: 'Delete project', handler: removeProject },
+              ]}
+            />
+          ))}
+        </div>
+      ) : null}
 
       <Dialog open={dialogData.opened}>
         <ManageEntityInfo

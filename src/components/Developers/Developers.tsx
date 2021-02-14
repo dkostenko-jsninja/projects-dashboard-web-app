@@ -135,18 +135,20 @@ function Developers() {
 
       {!isRequestInProgress && !developers.length && <p>There are no added developers yet.</p>}
 
-      <div className="c-developers__list">
-        {developers.map((developer) => (
-          <Developer
-            key={developer.uuid}
-            developer={developer}
-            buttons={[
-              { name: 'Edit', handler: editDeveloperDetails },
-              { name: 'Delete', handler: removeDeveloper },
-            ]}
-          />
-        ))}
-      </div>
+      {developers.length ? (
+        <div className="c-developers__list">
+          {developers.map((developer) => (
+            <Developer
+              key={developer.uuid}
+              developer={developer}
+              buttons={[
+                { name: 'Edit', handler: editDeveloperDetails },
+                { name: 'Delete', handler: removeDeveloper },
+              ]}
+            />
+          ))}
+        </div>
+      ) : null}
 
       <Dialog open={dialogData.opened}>
         <ManageEntityInfo
