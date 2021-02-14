@@ -1,10 +1,10 @@
 .c-features {
   position: relative;
   &__title {
-    line-height: 48px;
+    line-height: 48px !important;
   }
   &__add-btn {
-    position: absolute;
+    position: absolute !important;
     top: 0;
     right: 0;
   }

@@ -38,7 +38,7 @@ function Project({ project, buttons }: propTypes) {
       </div>
 
       <div className="c-project__features">
-        <Features features={project.features} projectUuid={project.uuid} />
+        <Features features={project.features} team={project.team} projectUuid={project.uuid} />
       </div>
 
       <div className="c-project__menu">

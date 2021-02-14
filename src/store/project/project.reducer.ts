@@ -54,9 +54,10 @@ const projectReducer = (state = defaultState, action) => {
       updatedProjects = state.projects.map((project) => {
         if (project.uuid === action.payload.projectUuid) {
           const updatedFeature = action.payload.feature;
-          if (!updatedFeature.developerUuid) {
-            updatedFeature.expirationDate = null;
-          }
+          updatedFeature.expirationDate = updatedFeature.developerUuid
+            ? new Date().toISOString()
+            : null;
+
           project.features = project.features.map((feat) => {
             return feat.uuid === updatedFeature.uuid ? updatedFeature : feat;
           });
@@ -96,6 +97,14 @@ const projectReducer = (state = defaultState, action) => {
       updatedProjects = state.projects.map((project) => {
         if (project.uuid === action.payload.projectUuid) {
           project.team = project.team.filter((dev) => dev.uuid !== action.payload.developerUuid);
+
+          project.features = project.features.map((feature) => {
+            if (feature.developerUuid === action.payload.developerUuid) {
+              feature.developerUuid = null;
+              feature.expirationDate = null;
+            }
+            return feature;
+          });
         }
         return project;
       });

@@ -12,7 +12,10 @@
   }
   &__date {
     margin-left: 24px;
-    color: #00e676;
+    color: #388e3c;
     font-weight: 600;
+    &--warn {
+      color: #dd2c00;
+    }
   }
 }

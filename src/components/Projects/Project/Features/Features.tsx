@@ -18,13 +18,15 @@ import initialFeature from '../../../../constants/initial-feature';
 
 import ManageEntityInfo from '../../../ManageEntityInfo';
 import Feature from './Feature';
+import { IDeveloper } from '../../../../interfaces/developer';
 
 type propTypes = {
   features: IFeature[];
+  team: IDeveloper[];
   projectUuid: string;
 };
 
-function Features({ features, projectUuid }: propTypes) {
+function Features({ features, team, projectUuid }: propTypes) {
   const dispatch = useDispatch();
 
   const [dialogData, setDialogData] = useState({ ...initialDialogData, entity: initialFeature });
@@ -99,6 +101,8 @@ function Features({ features, projectUuid }: propTypes) {
         <Feature
           key={feature.uuid}
           feature={feature}
+          team={team}
+          projectUuid={projectUuid}
           buttons={[
             { name: 'Edit feature', handler: editFeatureDetails },
             { name: 'Delete feature', handler: removeFeature },

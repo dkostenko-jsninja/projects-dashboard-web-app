@@ -6,12 +6,11 @@ import { IDeveloper } from '../../interfaces/developer';
 
 type propTypes = {
   label: string;
-  value: string;
   developers: IDeveloper[];
   handleChange: Function;
 };
 
-function SelectDevelopers({ label, value, developers, handleChange }: propTypes) {
+function SelectDevelopers({ label, developers, handleChange }: propTypes) {
   const handleSelect = (developerUuid) => {
     const selectedDeveloper = developers.find((developer) => developer.uuid === developerUuid);
     handleChange(selectedDeveloper);
@@ -24,7 +23,7 @@ function SelectDevelopers({ label, value, developers, handleChange }: propTypes)
         <Select
           labelId={label}
           onChange={(e) => handleSelect(e.target.value)}
-          value={value}
+          value=""
           label={label}
         >
           {developers.map((developer) => (

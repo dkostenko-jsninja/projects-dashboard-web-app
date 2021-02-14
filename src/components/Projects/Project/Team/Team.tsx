@@ -41,7 +41,6 @@ function Team({ team, projectUuid }: propTypes) {
 
       <SelectDevelopers
         label="Add developer to the team"
-        value=""
         developers={developers}
         handleChange={addDeveloper}
       />
