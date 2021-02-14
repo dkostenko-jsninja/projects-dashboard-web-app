@@ -35,7 +35,6 @@ export const getDevelopers = () => (dispatch) => {
 
   sendRequest('GET', '/api/developers')
     .then((data) => {
-      console.log(data.developers);
       dispatch(receiveDevelopers(data.developers));
     })
     .catch((err) => {

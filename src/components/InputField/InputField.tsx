@@ -79,7 +79,7 @@ function InputField({
       value={value}
       onChange={(e) => handleChange(name, e.target.value)}
       error={!!errorText && showErrors}
-      helperText={errorText}
+      helperText={showErrors && errorText}
       fullWidth
     />
   ) : (
