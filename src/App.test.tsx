@@ -1,9 +1,23 @@
 import React from 'react';
+
 import { render, screen } from '@testing-library/react';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { Provider } from 'react-redux';
+
+import store from './store';
+
 import App from './App';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+describe('AppComponent', () => {
+  it('renders component', () => {
+    render(
+      <Provider store={store}>
+        <Router>
+          <App />
+        </Router>
+      </Provider>
+    );
+
+    expect(screen.getByText('Projects dashboard')).toBeVisible();
+  });
 });
