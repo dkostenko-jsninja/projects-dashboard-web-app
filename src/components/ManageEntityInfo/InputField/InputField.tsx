@@ -77,7 +77,6 @@ function InputField({
 
   return type === 'input' ? (
     <TextField
-      key={`${name}-input`}
       className={className}
       id={name}
       label={label}
@@ -90,11 +89,10 @@ function InputField({
     />
   ) : (
     <div className={className}>
-      <InputLabel key={`${name}-label`} id={label} error={!!errorText && showErrors}>
+      <InputLabel id={label} error={!!errorText && showErrors}>
         {label}
       </InputLabel>
       <Select
-        key={`${name}-input`}
         id={name}
         labelId={label}
         value={value}
@@ -103,7 +101,9 @@ function InputField({
         onChange={(e) => handleChange(name, e.target.value)}
       >
         {selectValues.map((selectValue) => (
-          <MenuItem value={selectValue}>{selectValue}</MenuItem>
+          <MenuItem key={selectValue} value={selectValue}>
+            {selectValue}
+          </MenuItem>
         ))}
       </Select>
       {!!errorText && showErrors && <FormHelperText error>{errorText}</FormHelperText>}
