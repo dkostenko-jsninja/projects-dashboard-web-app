@@ -9,6 +9,7 @@ import { getProjects } from '../../store/project/project.action';
 import { RootSate } from '../../types/store-types';
 
 import DetailsChart from './DetailsChart';
+import DeadlineRatioChart from './DeadlineRatioChart';
 
 function Dashboard() {
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ function Dashboard() {
       {projects.length && (
         <div className="c-dashboard__charts">
           <DetailsChart projects={projects} />
+          <DeadlineRatioChart projects={projects} />
         </div>
       )}
     </div>

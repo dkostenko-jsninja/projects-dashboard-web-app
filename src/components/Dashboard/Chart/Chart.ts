@@ -11,6 +11,10 @@ type barChartPropTypes = propTypes & {
   changeDataType: Function;
 };
 
+type pieChartPropsType = propTypes & {
+  data: { value: number; color: string; legendText: string }[];
+};
+
 export const createBarChart = (
   containerEl,
   { width, height, data, dataType, changeDataType }: barChartPropTypes
@@ -82,3 +86,69 @@ export const createBarChart = (
 
   svg.append('g').call(xAxis).append('g').call(yAxis);
 };
+
+export const createPieChart = (containerEl, { width, height, data }: pieChartPropsType) => {
+  d3.select('.pie-chart-container').remove();
+
+  const svg = d3
+    .select(containerEl)
+    .append('svg')
+    .classed('pie-chart-container', true)
+    .attr('width', width)
+    .attr('height', height)
+    .append('g')
+    .attr('transform', `translate(${width / 2},${height / 2})`);
+
+  const pie = d3.pie().value((d) => d.value);
+  const dataReady = pie(data);
+
+  const margin = 40;
+  const radius = Math.min(width, height) / 2.5 - margin;
+
+  const arcGenerator = d3.arc().innerRadius(0).outerRadius(radius);
+
+  // chart slices
+  svg
+    .selectAll('slices')
+    .data(dataReady)
+    .enter()
+    .append('path')
+    .attr('d', arcGenerator)
+    .attr('fill', (d) => d.data.color);
+
+  // slice annotations
+  svg
+    .selectAll('slices')
+    .data(dataReady)
+    .enter()
+    .append('text')
+    .text((d) => `${d.value}%`)
+    .attr('transform', (d) => {
+      return dataReady.length > 1 ? `translate(${arcGenerator.centroid(d)})` : null;
+    })
+    .style('text-anchor', 'middle')
+    .style('font-size', 17);
+
+  const legendPosition = { x: -(width / 2.5), y: -(height / 2.5) - 20 };
+
+  addLegend(svg, legendPosition, data);
+};
+
+function addLegend(svg, legendPosition, data) {
+  data.forEach((item, index) => {
+    svg
+      .append('circle')
+      .attr('cx', legendPosition.x)
+      .attr('cy', legendPosition.y + 20 * index)
+      .attr('r', 6)
+      .style('fill', item.color);
+
+    svg
+      .append('text')
+      .attr('x', legendPosition.x + 20)
+      .attr('y', legendPosition.y + 20 * index)
+      .text(item.legendText)
+      .style('font-size', '15px')
+      .attr('alignment-baseline', 'middle');
+  });
+}
