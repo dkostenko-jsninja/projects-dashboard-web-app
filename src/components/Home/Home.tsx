@@ -1,14 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Home.scss';
 
-import { Link, Route, Switch } from 'react-router-dom';
+import { Link, Route, Switch, useHistory } from 'react-router-dom';
 import { List, ListItem, ListItemText } from '@material-ui/core';
 
 import Developers from '../Developers';
 import Projects from '../Projects';
+import Dashboard from '../Dashboard';
 
 function Home() {
+  const history = useHistory();
+
   const menuItems = ['Developers', 'Projects', 'Dashboard'];
+
+  useEffect(() => {
+    history.push('/dashboard');
+  }, []);
 
   return (
     <div className="c-home">
@@ -31,6 +38,9 @@ function Home() {
           </Route>
           <Route path="/projects">
             <Projects />
+          </Route>
+          <Route path="/dashboard">
+            <Dashboard />
           </Route>
         </Switch>
       </div>
