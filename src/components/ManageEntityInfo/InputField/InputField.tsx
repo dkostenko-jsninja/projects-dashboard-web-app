@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 
 import { TextField, Select, MenuItem, InputLabel, FormHelperText } from '@material-ui/core';
 
-import emailRegExp from '../../constants/email-regexp';
-import urlRegexp from '../../constants/url-regexp';
-import isoDateRegexp from '../../constants/iso-date-regexp';
+import emailRegExp from '../../../constants/email-regexp';
+import urlRegexp from '../../../constants/url-regexp';
+import isoDateRegexp from '../../../constants/iso-date-regexp';
 
 type propTypes = {
   className: string;
@@ -77,12 +77,11 @@ function InputField({
 
   return type === 'input' ? (
     <TextField
-      key={`${name}-input`}
       className={className}
       id={name}
       label={label}
       placeholder={placeholder}
-      value={value}
+      value={value || ''}
       onChange={(e) => handleChange(name, e.target.value)}
       error={!!errorText && showErrors}
       helperText={showErrors && errorText}
@@ -90,11 +89,10 @@ function InputField({
     />
   ) : (
     <div className={className}>
-      <InputLabel key={`${name}-label`} id={label} error={!!errorText && showErrors}>
+      <InputLabel id={label} error={!!errorText && showErrors}>
         {label}
       </InputLabel>
       <Select
-        key={`${name}-input`}
         id={name}
         labelId={label}
         value={value}
@@ -103,7 +101,9 @@ function InputField({
         onChange={(e) => handleChange(name, e.target.value)}
       >
         {selectValues.map((selectValue) => (
-          <MenuItem value={selectValue}>{selectValue}</MenuItem>
+          <MenuItem key={selectValue} value={selectValue}>
+            {selectValue}
+          </MenuItem>
         ))}
       </Select>
       {!!errorText && showErrors && <FormHelperText error>{errorText}</FormHelperText>}

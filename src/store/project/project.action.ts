@@ -78,10 +78,11 @@ export const getProjects = () => (dispatch) => {
 export const createProject = (project: IProject) => (dispatch) => {
   dispatch(request());
 
-  const { uuid, ...newProject } = project;
-  if (!newProject.expirationDate) {
-    newProject.expirationDate = null;
-  }
+  const newProject = {
+    name: project.name,
+    description: project.description,
+    expirationDate: project.expirationDate || null,
+  };
 
   sendRequest('POST', '/api/project', { project: newProject })
     .then((data) => {

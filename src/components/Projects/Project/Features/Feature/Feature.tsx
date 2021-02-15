@@ -8,7 +8,7 @@ import { editFeature } from '../../../../../store/project/project.action';
 import { IDeveloper } from '../../../../../interfaces/developer';
 import { IFeature } from '../../../../../interfaces/feature';
 
-import SelectDevelopers from '../../../../SelectDevelopers';
+import SelectDevelopers from '../../SelectDevelopers';
 import ItemMenu from '../../../../ItemMenu';
 import TeamMember from '../../TeamMember';
 
