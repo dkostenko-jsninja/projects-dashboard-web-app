@@ -17,7 +17,8 @@
     ],
     "no-use-before-define": "off",
     "no-param-reassign": "off",
-    "arrow-body-style": ["off"]
+    "arrow-body-style": ["off"],
+    "no-plusplus": "off"
   },
   "settings": {
     "import/resolver": {
