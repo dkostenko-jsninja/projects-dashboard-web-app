@@ -81,7 +81,7 @@ function InputField({
       id={name}
       label={label}
       placeholder={placeholder}
-      value={value}
+      value={value || ''}
       onChange={(e) => handleChange(name, e.target.value)}
       error={!!errorText && showErrors}
       helperText={showErrors && errorText}
