@@ -9,7 +9,7 @@ import { IFeature } from '../../interfaces/feature';
 
 import { FormField } from '../../types/common-types';
 
-import InputField from '../InputField';
+import InputField from './InputField';
 
 type propTypes = {
   type: string;
