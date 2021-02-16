@@ -15,6 +15,7 @@ function Dashboard() {
   const dispatch = useDispatch();
 
   const { projects } = useSelector((state: RootSate) => state.projectReducer);
+  const { isRequestInProgress } = useSelector((state: RootSate) => state.requestStatusReducer);
 
   useEffect(() => {
     dispatch(getProjects());
@@ -24,12 +25,14 @@ function Dashboard() {
     <div className="c-dashboard c-screen">
       <Typography variant="h4">Dashboard</Typography>
 
-      {projects.length && (
+      {!isRequestInProgress && !projects.length && <p>There are no created projects yet.</p>}
+
+      {projects.length ? (
         <div className="c-dashboard__charts">
           <DetailsChart projects={projects} />
           <DeadlineRatioChart projects={projects} />
         </div>
-      )}
+      ) : null}
     </div>
   );
 }
