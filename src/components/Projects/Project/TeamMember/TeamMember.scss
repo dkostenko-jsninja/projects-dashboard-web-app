@@ -1,0 +1,21 @@
+.c-team-member {
+  position: relative;
+  padding: 10px;
+  border: solid 1px #0d47a1;
+  border-radius: 10px;
+  margin: 0 10px 10px 0;
+  height: 130px;
+  width: 84px;
+  &__photo {
+    width: 64px;
+    height: 64px;
+    border-radius: 10px;
+  }
+  &__button {
+    position: absolute !important;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    margin: auto !important;
+  }
+}

@@ -1,0 +1,18 @@
+.c-manage-dialog {
+  min-width: 500px;
+  padding: 24px;
+  &__form {
+    &__input {
+      margin-bottom: 24px !important;
+    }
+    &__buttons {
+      margin-top: 24px;
+    }
+    &__button {
+      float: right;
+      &--close {
+        margin-right: 24px !important;
+      }
+    }
+  }
+}

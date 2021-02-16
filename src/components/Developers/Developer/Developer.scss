@@ -1,0 +1,36 @@
+.c-developer {
+  display: flex;
+  min-width: 340px;
+  justify-content: space-between;
+  margin: 0 24px 24px 0;
+  &__image-block {
+    width: 64px;
+    height: 64px;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  &__image {
+    width: 100%;
+    height: 100%;
+  }
+  &__name {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 500;
+  }
+  &__details {
+    margin-top: 8px;
+  }
+  &__detail {
+    width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin: 0;
+    &__name {
+      color: #616161;
+      width: 60px;
+      float: left;
+    }
+  }
+}
