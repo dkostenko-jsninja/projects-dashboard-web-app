@@ -42,7 +42,7 @@ function Team({ team, projectUuid }: propTypes) {
 
       <SelectDevelopers
         label="Add developer to the team"
-        developers={developers}
+        developers={developers.filter((developer) => developer.employeeStatus === 'active')}
         handleChange={addDeveloper}
       />
 
