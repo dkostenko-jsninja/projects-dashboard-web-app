@@ -1,5 +1,7 @@
 # Project dashboard Web App
 
+This project is a front-end part for https://github.com/dkostenko-jsninja/expressjs-typeorm-example
+
 ## Installation
 
 Firstly you need to install node_modules by running this command
